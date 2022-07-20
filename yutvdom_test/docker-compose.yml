@@ -1,0 +1,27 @@
+version: "3.3"
+services:
+  postgres-db:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=dreamer123
+      - PGDATA=/var/lib/postgresql/pgdata/
+      - POSTGRES_DB=yutvdomdb
+    volumes:
+      - pgdata:/var/lib/postgresql/pgdata/
+    ports:
+      - 5432:5432
+
+  web:
+    build: .
+    image: yutvdom
+    links:
+      - postgres-db:db
+    volumes:
+      - .:/yutvdom_app
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.base
+    ports:
+      - 8000:8000
+
+volumes:
+  pgdata: {}
