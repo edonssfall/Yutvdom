@@ -5,7 +5,7 @@ services:
     environment:
       - POSTGRES_PASSWORD=dreamer123
       - PGDATA=/var/lib/postgresql/pgdata/
-      - POSTGRES_DB=yutvdomdb
+      - POSTGRES_DB=yutvdom_db
     volumes:
       - pgdata:/var/lib/postgresql/pgdata/
     ports:
