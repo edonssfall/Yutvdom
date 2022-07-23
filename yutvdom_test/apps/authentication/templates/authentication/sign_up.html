@@ -1,7 +1,11 @@
-{% extends base.html %}
+{% extends "base.html" %}
 {% block title %}
     <title>Sign Up</title>
 {% endblock %}
-{% block body %}
-    sosi
+{% block content %}
+    <form method="POST">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type="submit"/>
+    </form>
 {% endblock %}

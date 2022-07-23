@@ -3,6 +3,7 @@ services:
   postgres-db:
     image: postgres
     environment:
+      - POSTGRES_USER=user
       - POSTGRES_PASSWORD=dreamer123
       - PGDATA=/var/lib/postgresql/pgdata/
       - POSTGRES_DB=yutvdom_db
@@ -13,11 +14,11 @@ services:
 
   web:
     build: .
-    image: yutvdom
+    image: edonssfall/yutvdom
     links:
-      - postgres-db:db
+      - postgres-db
     volumes:
-      - .:/yutvdom_app
+      - .:/yutvdom_django
     environment:
       - DJANGO_SETTINGS_MODULE=config.settings.base
     ports:

@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+{% block title %}
     <meta charset="UTF-8">
     <title>Home</title>
-</head>
-<body>
+{% endblock %}
+<a href="{% url 'authentication:home' %}">Home</a></br>
+{% block content %}
 
-</body>
+{% if request.user.is_authenticated %}
+    {{request.user}}
+    <a href="{% url 'authentication:logout-user' %}">Log out</a></br>
+{% else %}
+    <a href="{% url 'authentication:login-user' %}">Log in</a></br>
+    <a href="{% url 'authentication:register-user' %}">Register</a></br>
+{% endif %}
+{% endblock %}
 </html>
