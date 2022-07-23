@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+
+</head>
 {% block title %}
     <meta charset="UTF-8">
     <title>Home</title>
 {% endblock %}
 <a href="{% url 'authentication:home' %}">Home</a></br>
+{% for message in messages %}
+    <center>{{ message }}</center>
+{% endfor %}
 {% block content %}
-
-{% if request.user.is_authenticated %}
-    {{request.user}}
-    <a href="{% url 'authentication:logout-user' %}">Log out</a></br>
-{% else %}
-    <a href="{% url 'authentication:login-user' %}">Log in</a></br>
-    <a href="{% url 'authentication:register-user' %}">Register</a></br>
+    {% if request.user.is_authenticated %}
+        {{ request.user.last_name }} {{ request.user.first_name }}</br>
+        <a href="{% url 'authentication:logout-user' %}">Log out</a></br>
+    {% else %}
+        <a href="{% url 'authentication:login-user' %}">Log in</a></br>
+        <a href="{% url 'authentication:register-user' %}">Register</a></br>
 {% endif %}
 {% endblock %}
 </html>

@@ -6,7 +6,7 @@ User = get_user_model()
 
 
 class LoginForm(forms.Form):
-    nickname = forms.CharField(max_length=255)
+    email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
 
     def clean_user(self):
@@ -14,7 +14,7 @@ class LoginForm(forms.Form):
         password = self.cleaned_data('password', '')
         user = User.objects.filter(email=email).first()
 
-        if not user.check_password(password) or user:
+        if not user.check_password(password) or not user:
             raise forms.ValidationError(_("Incorrect email or password"))
 
 
@@ -34,5 +34,7 @@ class RegisterForm(forms.ModelForm):
     def save(self, commit=True):
         user = super().save(commit)
         if commit:
-            user.set_password(self.cleaned_data['password'])
+            user.is_active = False
+            user.set_password(self.cleaned_data['password1'])
+            user.save()
         return user
