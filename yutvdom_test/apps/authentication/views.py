@@ -6,12 +6,14 @@ from django.contrib import messages
 from django.views import View
 from django.views.generic import FormView
 from django.shortcuts import render
+import time
 
 User = get_user_model()
 
 
 def home(request):
-    return render(request, 'base.html')
+    now_time = time.strftime("%c")
+    return render(request, 'base.html', context={'time': now_time})
 
 
 class LoginView(FormView):

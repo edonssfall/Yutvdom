@@ -15,6 +15,7 @@
     {% if request.user.is_authenticated %}
         {{ request.user.last_name }} {{ request.user.first_name }}</br>
         <a href="{% url 'authentication:logout-user' %}">Log out</a></br>
+        {{ time }}
     {% else %}
         <a href="{% url 'authentication:login-user' %}">Log in</a></br>
         <a href="{% url 'authentication:register-user' %}">Register</a></br>
