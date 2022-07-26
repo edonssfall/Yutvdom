@@ -16,10 +16,10 @@ class AuthenticationBackend(ModelBackend):
         except User.DoesNotExist:
             return None
 
-    def authenticate(self, request, username=None, password=None, **kwargs):
+    def authenticate(self, request, username=None, email=None, password=None, **kwargs):
         try:
             user = User.objects.get(
-                Q(username=email), Q(username=phone)
+                Q(email=email) | Q(email=phone)
             )
         except User.DoesNotExist:
             return None

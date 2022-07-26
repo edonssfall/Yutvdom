@@ -9,13 +9,17 @@ class LoginForm(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
 
-    def clean_user(self):
-        email = self.cleaned_data('email', '')
-        password = self.cleaned_data('password', '')
+    def clean_password(self):
+        email = self.cleaned_data.get('email', '')
+        password = self.cleaned_data.get('password', '')
         user = User.objects.filter(email=email).first()
 
-        if not user.check_password(password) or not user:
+        if not user:
             raise forms.ValidationError(_("Incorrect email or password"))
+
+        if not user.check_password(password):
+            raise forms.ValidationError(_("Incorrect email or password"))
+        return self.cleaned_data
 
 
 class RegisterForm(forms.ModelForm):
