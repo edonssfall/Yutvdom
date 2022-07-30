@@ -137,4 +137,5 @@ GitHub.sublime-settings
 .history
 
 # Secret
-dev.py
+config/settings/dev.py
+config/settings/prod.py
