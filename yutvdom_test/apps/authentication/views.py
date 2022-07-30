@@ -22,7 +22,7 @@ class LoginView(FormView):
     success_url = '/'
 
     def form_valid(self, form):
-        login(self.request, User.objects.get(email=form.cleaned_data['email']))
+        login(self.request, User.objects.get())
         return super().form_valid(form)
 
     def form_invalid(self, form):

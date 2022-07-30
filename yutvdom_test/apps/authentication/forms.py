@@ -6,7 +6,7 @@ User = get_user_model()
 
 
 class LoginForm(forms.Form):
-    email = forms.EmailField()
+    email = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
     def clean_password(self):
@@ -38,7 +38,6 @@ class RegisterForm(forms.ModelForm):
     def save(self, commit=True):
         user = super().save(commit)
         if commit:
-            user.is_active = False
             user.set_password(self.cleaned_data['password1'])
             user.save()
         return user

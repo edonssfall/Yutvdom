@@ -17,7 +17,7 @@ class UserManager(BaseUserManager):
         if not email and not phone:
             raise ValueError(_('The Email an Phone number must be set'))
         email = self.normalize_email(email)
-        user = self.model(email=email, **extra_fields)
+        user = self.model(email=email, phone=phone, **extra_fields)
         user.set_password(password)
         user.save()
         return user
@@ -63,7 +63,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     EMAIL_FIELD = "email"
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['phone']
 
     objects = UserManager()
 
