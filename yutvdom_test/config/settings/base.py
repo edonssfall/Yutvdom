@@ -143,5 +143,4 @@ AUTHENTICATION_BACKENDS = [
     'social_core.backends.instagram.InstagramOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 ]
-SOCIAL_AUTH_FACEBOOK_KEY = '1053220585589032'
-SOCIAL_AUTH_FACEBOOK_SECRET = '9943ce91af46f6daf64e7dd9e5e88336'
+
