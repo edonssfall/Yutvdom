@@ -13,7 +13,7 @@ User = get_user_model()
 
 def home(request):
     now_time = time.strftime("%c")
-    return render(request, 'base.html', context={'time': now_time})
+    return render(request, 'home.html', context={'now_time': now_time})
 
 
 class LoginView(FormView):
@@ -22,7 +22,7 @@ class LoginView(FormView):
     success_url = '/'
 
     def form_valid(self, form):
-        login(self.request, User.objects.get())
+        login(self.request, User.objects.get(email=form.cleaned_data['email']))
         return super().form_valid(form)
 
     def form_invalid(self, form):

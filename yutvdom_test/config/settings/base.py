@@ -19,7 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(q2+03ru+r@q29w*f-p9b@xd52%e9ioh(a1!=+guwqxb6_7b@a'
+SECRET_KEY = 'django-insdfsdoh(a1!=+guwqxb6_7b@a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     'apps.authentication.apps.AuthenticationConfig',
 
     'phonenumber_field',
-    'django_phonenumbers'
-]
+    'django_phonenumbers',
+    'social.apps.django_app.default',
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -65,6 +66,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -116,14 +119,29 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+
 # Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
+# https://docs.djangoproject.com/en/4.0/ref/settings/#dbackend='django.contrib.auth.backends.ModelBackend.default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'authentication.User'
 
+SOCIAL_AUTH_JSONFIELD_ENABLED = True
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
 AUTHENTICATION_BACKENDS = [
-    'apps.authentication.backends.AuthenticationBackend',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.linkedin.LinkedinOAuth2',
+    'social.backends.twitter.TwitterOAuth',
+    'social_core.backends.instagram.InstagramOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
 ]
+SOCIAL_AUTH_FACEBOOK_KEY = '1053220585589032'
+SOCIAL_AUTH_FACEBOOK_SECRET = '9943ce91af46f6daf64e7dd9e5e88336'

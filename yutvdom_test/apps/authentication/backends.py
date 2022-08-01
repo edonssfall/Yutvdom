@@ -4,7 +4,7 @@ from django.contrib.auth.backends import ModelBackend
 
 User = get_user_model()
 
-
+"""
 class AuthenticationBackend(ModelBackend):
     supports_object_permission = True
     supports_anonymous_user = False
@@ -33,3 +33,4 @@ class AuthenticationBackend(ModelBackend):
                 return None
         if User.check_password(password):
             return user
+"""
