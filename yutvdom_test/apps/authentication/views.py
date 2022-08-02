@@ -18,11 +18,10 @@ def home(request):
 
 class LoginView(FormView):
     form_class = LoginForm
-    template_name = 'authentication/sign_in.html'
     success_url = '/'
 
     def form_valid(self, form):
-        login(self.request, User.objects.get(email=form.cleaned_data['email']))
+        login(self.request, User.objects.get(email=form.cleaned_data['email']), backend='django.contrib.auth.backends.ModelBackend')
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -48,4 +47,4 @@ class RegisterView(FormView):
 class LogoutView(View):
     def get(self, request):
         logout(request)
-        return HttpResponseRedirect(reverse('authentication:login-user'))
+        return HttpResponseRedirect(reverse('authentication:home'))

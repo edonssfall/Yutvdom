@@ -1,13 +1,22 @@
-{% extends "base.html" %}
-
-{% block title %}
-    <title>Sign Up</title>
-{% endblock %}
-
-{% block content %}
-    <center><form method="POST">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <input type="submit"/>
-    </form></center>
-{% endblock %}
+    <div class="modal fade" id="register_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Log in</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'authentication:register_modal' %}" method="POST">
+                        {{ register_modal }}
+                        {% csrf_token %}
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">
+                        Register
+                    </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

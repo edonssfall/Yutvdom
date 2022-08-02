@@ -1,26 +1,16 @@
-{% extends 'base.html' %}
 
-{% block title %}
-    <title>Sign In</title>
-{% endblock %}
-<head>
-    <link rel="stylesheet" type="text/css" href="css/log-in.css" />
-</head>
-{% block content %}
-    <div class="modal fade" id="login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="login_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Log in</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST">
-                        {{ form.as_p }}
+                    <form action="{% url 'authentication:login_modal' %}" method="POST">
+                        {{ login_modal }}
                         {% csrf_token %}
-                        <input type="submit"/>
-                    </form>
                     <div class="row">
                         <div class="col-md-8 mx-auto social-container my-2 order-md-1">
                             <button class="btn btn-primary mb-2">
@@ -33,13 +23,16 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
+                    <button type="submit" class="btn btn-primary">
+                        Log In
+                    </button>
+                    <button type="button" class="btn btn-primary"
+                        data-bs-toggle="modal" data-bs-target="#register_modal">
+                        Register
+                    </button>
+                </form>
                 </div>
             </div>
         </div>
     </div>
-
-    <center></center>
-
-{% endblock %}
+    {% include 'authentication/sign_up.html' %}

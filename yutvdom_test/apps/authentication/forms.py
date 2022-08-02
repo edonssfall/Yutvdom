@@ -6,8 +6,8 @@ User = get_user_model()
 
 
 class LoginForm(forms.Form):
-    email = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
     def clean_password(self):
         email = self.cleaned_data.get('email', '')
@@ -27,8 +27,8 @@ class RegisterForm(forms.ModelForm):
         model = User
         fields = ['first_name', 'last_name', 'email', 'phone']
 
-    password1 = forms.CharField(widget=forms.PasswordInput, label=_("Password"))
-    password2 = forms.CharField(widget=forms.PasswordInput, label=_("Repeat Password"))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}), label=_("Password"))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}), label=_("Repeat Password"))
 
     def clean_password2(self):
         cd = self.cleaned_data
