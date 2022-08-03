@@ -1,7 +1,7 @@
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.contrib.auth.models import PermissionsMixin
 from phonenumber_field.modelfields import PhoneNumberField
 
 
@@ -41,7 +41,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(_("first name"), max_length=150, blank=True, null=True)
     last_name = models.CharField(_("last name"), max_length=150, blank=True, null=True)
     email = models.EmailField(_("email address"), blank=True, unique=True)
-    phone = PhoneNumberField(_("phone number"), blank=True, null=True, unique=True)
+    phone = models.CharField(_("phone number"), max_length=13, blank=True, null=True, unique=True)
     city = models.CharField(_('city'), max_length=255, blank=True, null=True)
     adress = models.CharField(_('adress'), max_length=255, blank=True, null=True)
     zip_code = models.CharField(_('zip code'), max_length=255, null=True)
