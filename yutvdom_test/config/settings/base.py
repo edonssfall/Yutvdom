@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'apps.authentication.apps.AuthenticationConfig',
+    'apps.images.apps.ImageConfig'
 
     'phonenumber_field',
     'django_phonenumbers',

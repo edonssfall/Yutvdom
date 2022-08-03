@@ -7,10 +7,9 @@
                     <h5 class="modal-title" id="staticBackdropLabel">Log in</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
-                {% for error in form.non_field_errors %}
-{{ error }}
-{% endfor %}
+                {% if form.errors %}
+                    <p>Your username and password didn't match. Please try again.</p>
+                {% endif %}
                 <form action="{% url 'authentication:login_modal' %}" method="POST">
                     <div class="modal-body">
                         {{ login_modal }}
