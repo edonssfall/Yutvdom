@@ -21,7 +21,11 @@ class LoginView(FormView):
     success_url = '/'
 
     def form_valid(self, form):
-        login(self.request, User.objects.get(email=form.cleaned_data['email']), backend='django.contrib.auth.backends.ModelBackend')
+        login(
+            self.request,
+            User.objects.get(email=form.cleaned_data['email']),
+            backend='django.contrib.auth.backends.ModelBackend'
+        )
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -30,8 +34,7 @@ class LoginView(FormView):
 
 class RegisterView(FormView):
     form_class = RegisterForm
-    template_name = 'authentication/sign_up.html'
-    success_url = 'sign_in'
+    success_url = '/'
 
     def form_valid(self, form):
         form.save()

@@ -7,32 +7,35 @@
                     <h5 class="modal-title" id="staticBackdropLabel">Log in</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <form action="{% url 'authentication:login_modal' %}" method="POST">
+                <form action="{% url 'authentication:login_modal' %}" method="POST">
+                    <div class="modal-body">
                         {{ login_modal }}
                         {% csrf_token %}
-                    <div class="row">
-                        <div class="col-md-8 mx-auto social-container my-2 order-md-1">
-                            <button class="btn btn-primary mb-2">
-                                <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
+                    </div>
+                        <div class="col-xs-8">
+                            <div class="row">
+                                <div class="col-md-8 mx-auto social-container my-2 order-md-1">
+                                    <button class="btn btn-primary mb-2">
+                                        <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
+                                    </button>
+                                    <button class="btn btn-danger  mb-2">
+                                        <a href="#">Login with Instagram</a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">
+                                Log In
                             </button>
-                            <button class="btn btn-danger  mb-2">
-                                <a href="#">Login with Instagram</a>
+                </form>
+                                OR
+                            <button type="button" class="btn btn-primary"
+                                data-bs-toggle="modal" data-bs-target="#register_modal"
+                                data-bs-dismiss="modal">
+                                Register
                             </button>
                         </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">
-                        Log In
-                    </button>
-                    <button type="button" class="btn btn-primary"
-                        data-bs-toggle="modal" data-bs-target="#register_modal">
-                        Register
-                    </button>
-                </form>
-                </div>
             </div>
         </div>
     </div>
-    {% include 'authentication/sign_up.html' %}
