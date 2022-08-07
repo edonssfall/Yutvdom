@@ -10,7 +10,7 @@
                 {% if form.errors %}
                     <p>Your username and password didn't match. Please try again.</p>
                 {% endif %}
-                <form action="{% url 'authentication:login_modal' %}" method="POST">
+                <form action="{% url 'authentication:login_modal' %}" method="POST" id="ajax_login">
                     <div class="modal-body">
                         {{ login_modal }}
                         {% csrf_token %}

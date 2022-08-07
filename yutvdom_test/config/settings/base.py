@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'apps.authentication.apps.AuthenticationConfig',
-    'apps.images.apps.ImageConfig'
+    'apps.images.apps.ImagesConfig',
 
     'phonenumber_field',
     'django_phonenumbers',
@@ -145,5 +145,6 @@ AUTHENTICATION_BACKENDS = [
     'social.backends.twitter.TwitterOAuth',
     'social_core.backends.instagram.InstagramOAuth2',
     'django.contrib.auth.backends.ModelBackend',
+    'apps.authentication.backends.AuthenticationBackend'
 ]
 

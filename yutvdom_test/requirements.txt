@@ -3,3 +3,4 @@ psycopg2-binary==2.9.3
 django-phonenumber-field==6.3.0
 django-phonenumbers==1.0.1
 python-social-auth==0.3.6
+Pillow==9.2.0
