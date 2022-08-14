@@ -25,6 +25,7 @@ services:
       - env/.env
       - env/db.env
       - env/rabbitmq.env
+    command: "bin/bash -c 'pip install -r requirements.txt; invoke run'"
 
   celery:
     build: .
@@ -38,6 +39,7 @@ services:
       - env/.env
       - env/db.env
       - env/rabbitmq.env
+    command: "celery -A config.celery.app worker"
 
   nginx:
     image: nginx
@@ -47,8 +49,9 @@ services:
     links:
       - web:web
     ports:
-      - 8000:80
+      - 80:80
 
 volumes:
   pgdata: {}
   static: {}
+  

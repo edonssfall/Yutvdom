@@ -4,7 +4,7 @@ from django.contrib.auth import login, logout, get_user_model
 from .forms import LoginForm, RegisterForm
 from django.contrib import messages
 from django.views import View
-from django.views.generic import FormView
+from django.views.generic import FormView, CreateView
 from django.shortcuts import render
 import time
 
@@ -32,7 +32,7 @@ class LoginView(FormView):
         return super(LoginView, self).form_invalid(form)
 
 
-class RegisterView(FormView):
+class RegisterView(CreateView):
     form_class = RegisterForm
     success_url = '/'
 
