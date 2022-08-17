@@ -37,11 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'apps.authentication.apps.AuthenticationConfig',
-    'apps.images.apps.ImagesConfig',
 
     'phonenumber_field',
     'django_phonenumbers',
     'social.apps.django_app.default',
+    'social_django',
     ]
 
 MIDDLEWARE = [
@@ -81,12 +81,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+DATABASES = {}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -148,3 +143,4 @@ AUTHENTICATION_BACKENDS = [
     'apps.authentication.backends.AuthenticationBackend'
 ]
 
+BROKER_URL = 'redis://localhost:6379'

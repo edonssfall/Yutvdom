@@ -2,11 +2,11 @@ version: "3.3"
 services:
   rabbitmq:
     image: rabbitmq
-    env_file: env/rabbitmq.env
+    env_file: envs/rabbitmq.env
 
   postgres-db:
     image: postgres
-    env_file: env/db.env
+    env_file: envs/db.env
     volumes:
       - pgdata:/var/lib/postgresql/pgdata/
     ports:
@@ -22,9 +22,9 @@ services:
       - .:/yutvdom_django
       - ./static:/static
     env_file:
-      - env/.env
-      - env/db.env
-      - env/rabbitmq.env
+      - envs/.env
+      - envs/db.env
+      - envs/rabbitmq.env
     command: "bin/bash -c 'pip install -r requirements.txt; invoke run'"
 
   celery:
@@ -36,9 +36,9 @@ services:
     volumes:
       - .:/yutvdom_django
     env_file:
-      - env/.env
-      - env/db.env
-      - env/rabbitmq.env
+      - envs/.env
+      - envs/db.env
+      - envs/rabbitmq.env
     command: "celery -A config.celery.app worker"
 
   nginx:
