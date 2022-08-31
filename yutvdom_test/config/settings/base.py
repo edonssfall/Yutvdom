@@ -37,10 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'apps.authentication.apps.AuthenticationConfig',
-    'apps.shop.apps.ShopConfig',
+    'apps.product.apps.ProductConfig',
 
-    'phonenumber_field',
-    'django_phonenumbers',
     'social.apps.django_app.default',
     'social_django',
     ]
@@ -124,7 +122,16 @@ STATICFILES_DIRS = [
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#dbackend='django.contrib.auth.backends.ModelBackend.default-auto-field
-
+"""
+DJOSER = {
+    'USER_CREATE_PASSWORD_RETYPE': True,
+    'SEND_ACTIVATION_EMAIL': True,
+    'SET_PASSWORD_RETYPE': True,
+    'PASSWORD_RESET_CONFIRM_RETYPE': True,
+    'TOKEN_MODEL': None,
+    'ACTIVATION_URL': 'authentication/verify/{uid}/{token}/',
+}
+"""
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'authentication.User'

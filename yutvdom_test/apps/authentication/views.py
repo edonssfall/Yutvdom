@@ -35,7 +35,7 @@ class LoginView(FormView):
 class RegisterView(CreateView):
     form_class = RegisterForm
     success_url = '/'
-
+ 
     def form_valid(self, form):
         form.save()
         messages.add_message(self.request, messages.SUCCESS,

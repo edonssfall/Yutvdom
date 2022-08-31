@@ -5,7 +5,7 @@ from django.contrib.auth.backends import ModelBackend
 User = get_user_model()
 
 
-class AuthenticationBackend(ModelBackend):
+class AuthenticationBackend(object):
     supports_object_permission = True
     supports_anonymous_user = False
     supports_inactive_user = False
@@ -16,20 +16,11 @@ class AuthenticationBackend(ModelBackend):
         except User.DoesNotExist:
             return None
 
-    def authenticate(self, request, email=None, password=None, **kwargs):
-        if email is None:
-            phone = kwargs.get('phone')
-            if phone is None:
-                return None
-            else:
-                try:
-                    user = User.objects.get(phone=phone)
-                except User.DoesNotExist:
-                    return None
-        else:
-            try:
-                user = User.objects.get(email=email)
-            except User.DoesNotExist:
-                return None
-        if User.check_password(password):
-            return user
+    def authenticate(self, request, username, password, **kwargs):
+        try:
+            user = User.objects.get(
+                Q(username=username) | Q(email=username) | Q(phone=username)
+            )
+        except User.DoesNotExist:
+            return None
+        return user if user.check_password(password) else None

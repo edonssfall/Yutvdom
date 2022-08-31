@@ -13,10 +13,8 @@ class LoginForm(forms.Form):
         email = self.cleaned_data.get('email', '')
         password = self.cleaned_data.get('password', '')
         user = User.objects.filter(email=email).first()
-
         if not user:
-            raise forms.ValidationError(_("Incorrect email or password"))
-
+            return forms.ValidationError(_("Incorrect email or password"))
         if not user.check_password(password):
             raise forms.ValidationError(_("Incorrect email or password"))
         return self.cleaned_data

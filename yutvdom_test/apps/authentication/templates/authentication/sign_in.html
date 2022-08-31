@@ -13,8 +13,7 @@
                 <form action="{% url 'authentication:login_modal' %}" method="POST" id="ajax_login">
                     <div class="modal-body">
                         {{ login_modal }}
-                        {% csrf_token %}
-                    </div>
+                     </div>
                         <div class="col-xs-8">
                             <div class="row">
                                 <div class="col-md-8 mx-auto social-container my-2 order-md-1">
