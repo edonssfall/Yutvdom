@@ -1,13 +1,16 @@
 # Django #
+.vscode
+.idea
 *.log
 *.pot
 *.pyc
 __pycache__
 db.sqlite3
-media
+
 
 # Backup files #
 *.bak
+.circleci
 
 # If you are using PyCharm #
 # User-specific stuff
@@ -137,5 +140,13 @@ GitHub.sublime-settings
 .history
 
 # Secret
-config/settings/dev.py
-config/settings/prod.py
+dev.py
+prod.py
+API_keys.py
+db.json
+data.tsv
+/imdb2000-main
+
+*.env
+/envs
+/static
